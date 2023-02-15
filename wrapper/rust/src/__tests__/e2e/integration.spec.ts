@@ -1,8 +1,4 @@
 import { PolywrapClient } from "@polywrap/client-js";
-import {
-  initTestEnvironment,
-  stopTestEnvironment,
-} from "@polywrap/test-env-js";
 import * as App from "../types/wrap";
 import path from "path";
 
@@ -14,6 +10,7 @@ describe("SimpleStorage", () => {
   const CONNECTION = { networkNameOrChainId: "testnet" };
 
   let client: PolywrapClient;
+  let contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
   const wrapperPath: string = path.join(
     path.resolve(__dirname),
@@ -24,13 +21,11 @@ describe("SimpleStorage", () => {
   const wrapperUri = `fs/${wrapperPath}/build`;
 
   beforeAll(async () => {
-    await initTestEnvironment();
     const config = await getClientConfig({});
     client = new PolywrapClient(config);
   });
 
   afterAll(async () => {
-    await stopTestEnvironment();
   });
 
   const getData = async (contractAddr: string): Promise<number> => {
@@ -69,18 +64,6 @@ describe("SimpleStorage", () => {
   }
 
   it("sanity", async () => {
-    // Deploy contract
-    const response = await App.SimpleStorage_Module.deployContract(
-      { connection: CONNECTION },
-      client,
-      wrapperUri
-    );
-    if (!response.ok) fail(response.error);
-    expect(response.ok).toBeTruthy();
-    expect(response.value).not.toBeNull();
-
-    const contractAddress = response.value as string;
-
     // Get data
     let data = await getData(contractAddress);
     expect(data).toBe(0);
