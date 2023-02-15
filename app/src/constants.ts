@@ -8,8 +8,17 @@ export const EXPLORER_URL = {
   "0x5": "https://goerli.etherscan.io/",
   "0x13881": "https://mumbai.polygonscan.com/",
 }
-export type ChaindId = "0x539" | "0x5" | "0x13881";
+export type ChainId = "0x539" | "0x5" | "0x13881";
 
+export function getChainId(): ChainId {
+  let chainId = (window as any).ethereum.chainId;
+
+  if (typeof chainId === "number") {
+    chainId = chainId.toString(16);
+  }
+
+  return chainId;
+}
 
 export const WRAPPER_ENS_DOMAIN = "api.simplestorage.eth";
 export const WRAPPER_URI = `ens/goerli/${WRAPPER_ENS_DOMAIN}`;

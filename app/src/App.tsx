@@ -2,9 +2,9 @@ import './App.css';
 import React from 'react';
 import { PolywrapClient } from '@polywrap/client-js';
 import { setupPolywrapClient } from './wrapper/setupClient';
-import { setData } from './wrapper/simplestorage';
+import { setData, getData } from './wrapper/simplestorage';
 import Logo from './logo.png';
-import { ChaindId, EXPLORER_URL, SIMPLE_STORAGE_CONTRACT_ADDRESS, WRAPPER_ENS_DOMAIN, WRAPPER_IPFS_HASH, WRAPPER_URI } from './constants';
+import { EXPLORER_URL, getChainId, SIMPLE_STORAGE_CONTRACT_ADDRESS, WRAPPER_ENS_DOMAIN, WRAPPER_IPFS_HASH, WRAPPER_URI } from './constants';
 
 interface Set {
   txReceipt: string;
@@ -15,10 +15,11 @@ function App() {
   const [client, setClient] = React.useState<PolywrapClient | undefined>(
     undefined
   );
-  const [value, setValue] = React.useState<number>(0);
+  const [value, setValue] = React.useState<number | string>("...");
   const [sets, setSets] = React.useState<Set[]>([]);
   const addSet = (set: Set) => setSets([...sets, set]);
-  const chainId = (window as any).ethereum.chainId as ChaindId;
+  const chainId = getChainId();
+  
   const contractAddress = SIMPLE_STORAGE_CONTRACT_ADDRESS[chainId];
   const explorerUrl = EXPLORER_URL[chainId];
 
@@ -33,6 +34,21 @@ function App() {
     setClient(newClient);
     return newClient;
   };
+
+  React.useEffect(() => {
+    const getInitValue = async () => {
+      if (value !== "...") {
+        return;
+      }
+
+      const client = await getClient();
+      const result = await getData(contractAddress, client);
+      setValue(Number.parseInt(result));
+    };
+
+    getInitValue()
+      .catch((err) => console.error(err));
+  }, []);
 
   const link = (url: string, children: () => JSX.Element) => (
     <a target='_blank' rel='noopener noreferrer' href={url}>
