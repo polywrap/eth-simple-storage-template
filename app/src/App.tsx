@@ -4,7 +4,7 @@ import { PolywrapClient } from '@polywrap/client-js';
 import { setupPolywrapClient } from './wrapper/setupClient';
 import { setData } from './wrapper/simplestorage';
 import Logo from './logo.png';
-import { SIMPLE_STORAGE_CONTRACT_ADDRESS, WRAPPER_ENS_DOMAIN, WRAPPER_IPFS_HASH, WRAPPER_URI } from './constants';
+import { ChaindId, EXPLORER_URL, SIMPLE_STORAGE_CONTRACT_ADDRESS, WRAPPER_ENS_DOMAIN, WRAPPER_IPFS_HASH, WRAPPER_URI } from './constants';
 
 interface Set {
   txReceipt: string;
@@ -18,6 +18,9 @@ function App() {
   const [value, setValue] = React.useState<number>(0);
   const [sets, setSets] = React.useState<Set[]>([]);
   const addSet = (set: Set) => setSets([...sets, set]);
+  const chainId = (window as any).ethereum.chainId as ChaindId;
+  const contractAddress = SIMPLE_STORAGE_CONTRACT_ADDRESS[chainId];
+  const explorerUrl = EXPLORER_URL[chainId];
 
   const [inputValue, setInputValue] = React.useState<number>(0);
 
@@ -89,7 +92,7 @@ function App() {
             />
             <button
               onClick={async () =>
-                setData(SIMPLE_STORAGE_CONTRACT_ADDRESS, inputValue, await getClient())
+                setData(contractAddress, inputValue, await getClient())
                   .then((result) => {
                     addSet({
                       txReceipt: result,
@@ -135,7 +138,7 @@ function App() {
                 <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address: </>
               ))}
               {syntax.value(() => (
-                <>{SIMPLE_STORAGE_CONTRACT_ADDRESS.substring(0, 5)}...{SIMPLE_STORAGE_CONTRACT_ADDRESS.substring(37, 42)}</>
+                <>{contractAddress.substring(0, 5)}...{contractAddress.substring(37, 42)}</>
               ))}
               <br />
               {syntax.value(() => (
@@ -163,7 +166,7 @@ function App() {
                   <>
                     #{index} | value: {set.value} | tx:{' '}
                     {link(
-                      `https://goerli.etherscan.io/tx/${set.txReceipt}`,
+                      `${explorerUrl}/tx/${set.txReceipt}`,
                       () => (
                         <>{set.txReceipt.substring(0, 7)}...</>
                       )
