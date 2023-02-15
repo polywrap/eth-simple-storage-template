@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/SimpleStorage.sol": {
+      "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.9;\n\n// Uncomment this line to use console.log\n// import \"hardhat/console.sol\";\n\ncontract SimpleStorage {\n  uint256 data;\n  string ipfsHash;\n\n  event DataSet(address from, uint256 data);\n  event HashSet(address from, string ipfsHash);\n\n  function set(uint256 x) public {\n    data = x;\n    emit DataSet(msg.sender, x);\n  }\n\n  function get() public view returns (uint256) {\n    return data;\n  }\n\n  function setHash(string calldata x) public {\n    ipfsHash = x;\n    emit HashSet(msg.sender, x);\n  }\n\n  function getHash() public view returns (string memory) {\n    return ipfsHash;\n  }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 1
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

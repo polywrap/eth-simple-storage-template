@@ -1,0 +1,21 @@
+{
+  "name": "eth-simple-storage-template",
+  "description": "Ethereum simple storage template",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polywrap/eth-simple-storage-template.git"
+  },
+  "workspaces": {
+    "packages": [
+      "./app",
+      "./hardhat",
+      "./wrapper/**"
+    ]
+  },
+  "scripts": {
+  },
+  "devDependencies": {
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "data",
+          "type": "uint256"
+        }
+      ],
+      "name": "DataSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "ipfsHash",
+          "type": "string"
+        }
+      ],
+      "name": "HashSet",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "get",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getHash",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "x",
+          "type": "uint256"
+        }
+      ],
+      "name": "set",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "x",
+          "type": "string"
+        }
+      ],
+      "name": "setHash",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x120209c5d0f6d87e3f92e97fd09898b30a168204a2bc2710f2fcce9c2dae564c",
+  "receipt": {
+    "to": null,
+    "from": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+    "contractAddress": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    "transactionIndex": 0,
+    "gasUsed": "298725",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x37f783beb3a04c1653fa67c2b83b2b19a385eb3eac376ab2d4fd53e6dc6e4b12",
+    "transactionHash": "0x120209c5d0f6d87e3f92e97fd09898b30a168204a2bc2710f2fcce9c2dae564c",
+    "logs": [],
+    "blockNumber": 1,
+    "cumulativeGasUsed": "298725",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "ac0b3302c75129ee772058ee689bf723",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.17+commit.8df45f5f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"data\",\"type\":\"uint256\"}],\"name\":\"DataSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"ipfsHash\",\"type\":\"string\"}],\"name\":\"HashSet\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getHash\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"x\",\"type\":\"uint256\"}],\"name\":\"set\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"x\",\"type\":\"string\"}],\"name\":\"setHash\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/SimpleStorage.sol\":\"SimpleStorage\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[]},\"sources\":{\"contracts/SimpleStorage.sol\":{\"content\":\"// SPDX-License-Identifier: UNLICENSED\\npragma solidity ^0.8.9;\\n\\n// Uncomment this line to use console.log\\n// import \\\"hardhat/console.sol\\\";\\n\\ncontract SimpleStorage {\\n  uint256 data;\\n  string ipfsHash;\\n\\n  event DataSet(address from, uint256 data);\\n  event HashSet(address from, string ipfsHash);\\n\\n  function set(uint256 x) public {\\n    data = x;\\n    emit DataSet(msg.sender, x);\\n  }\\n\\n  function get() public view returns (uint256) {\\n    return data;\\n  }\\n\\n  function setHash(string calldata x) public {\\n    ipfsHash = x;\\n    emit HashSet(msg.sender, x);\\n  }\\n\\n  function getHash() public view returns (string memory) {\\n    return ipfsHash;\\n  }\\n}\\n\",\"keccak256\":\"0x6870b03daa12cfc057989901e0e429c7424b67d6050dc6e8311a6ff212a932d9\",\"license\":\"UNLICENSED\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610471806100206000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80631ed83fd41461005157806360fe47b1146100665780636d4ce63c14610079578063d13319c41461008f575b600080fd5b61006461005f3660046101c4565b6100a4565b005b610064610074366004610235565b6100f1565b6000546040519081526020015b60405180910390f35b610097610132565b604051610086919061024e565b60016100b182848361033b565b507f7701f49eb9aabe8890631508a9092eabb511a34566c30f2d94ff4420da1ccb133383836040516100e5939291906103fb565b60405180910390a15050565b600081905560408051338152602081018390527f7c94a94848d5859b1a30c887dc5740bf8d1cf789779be90adda1d0d34dd25022910160405180910390a150565b606060018054610141906102b2565b80601f016020809104026020016040519081016040528092919081815260200182805461016d906102b2565b80156101ba5780601f1061018f576101008083540402835291602001916101ba565b820191906000526020600020905b81548152906001019060200180831161019d57829003601f168201915b5050505050905090565b600080602083850312156101d757600080fd5b82356001600160401b03808211156101ee57600080fd5b818501915085601f83011261020257600080fd5b81358181111561021157600080fd5b86602082850101111561022357600080fd5b60209290920196919550909350505050565b60006020828403121561024757600080fd5b5035919050565b600060208083528351808285015260005b8181101561027b5785810183015185820160400152820161025f565b506000604082860101526040601f19601f8301168501019250505092915050565b634e487b7160e01b600052604160045260246000fd5b600181811c908216806102c657607f821691505b6020821081036102e657634e487b7160e01b600052602260045260246000fd5b50919050565b601f82111561033657600081815260208120601f850160051c810160208610156103135750805b601f850160051c820191505b818110156103325782815560010161031f565b5050505b505050565b6001600160401b038311156103525761035261029c565b6103668361036083546102b2565b836102ec565b6000601f84116001811461039a57600085156103825750838201355b600019600387901b1c1916600186901b1783556103f4565b600083815260209020601f19861690835b828110156103cb57868501358255602094850194600190920191016103ab565b50868210156103e85760001960f88860031b161c19848701351681555b505060018560011b0183555b5050505050565b6001600160a01b03841681526040602082018190528101829052818360608301376000818301606090810191909152601f909201601f191601019291505056fea2646970667358221220328510e50ad5aa8ffa57f73cb37739e336a5af202ccbb31e6121e8f791b39db264736f6c63430008110033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80631ed83fd41461005157806360fe47b1146100665780636d4ce63c14610079578063d13319c41461008f575b600080fd5b61006461005f3660046101c4565b6100a4565b005b610064610074366004610235565b6100f1565b6000546040519081526020015b60405180910390f35b610097610132565b604051610086919061024e565b60016100b182848361033b565b507f7701f49eb9aabe8890631508a9092eabb511a34566c30f2d94ff4420da1ccb133383836040516100e5939291906103fb565b60405180910390a15050565b600081905560408051338152602081018390527f7c94a94848d5859b1a30c887dc5740bf8d1cf789779be90adda1d0d34dd25022910160405180910390a150565b606060018054610141906102b2565b80601f016020809104026020016040519081016040528092919081815260200182805461016d906102b2565b80156101ba5780601f1061018f576101008083540402835291602001916101ba565b820191906000526020600020905b81548152906001019060200180831161019d57829003601f168201915b5050505050905090565b600080602083850312156101d757600080fd5b82356001600160401b03808211156101ee57600080fd5b818501915085601f83011261020257600080fd5b81358181111561021157600080fd5b86602082850101111561022357600080fd5b60209290920196919550909350505050565b60006020828403121561024757600080fd5b5035919050565b600060208083528351808285015260005b8181101561027b5785810183015185820160400152820161025f565b506000604082860101526040601f19601f8301168501019250505092915050565b634e487b7160e01b600052604160045260246000fd5b600181811c908216806102c657607f821691505b6020821081036102e657634e487b7160e01b600052602260045260246000fd5b50919050565b601f82111561033657600081815260208120601f850160051c810160208610156103135750805b601f850160051c820191505b818110156103325782815560010161031f565b5050505b505050565b6001600160401b038311156103525761035261029c565b6103668361036083546102b2565b836102ec565b6000601f84116001811461039a57600085156103825750838201355b600019600387901b1c1916600186901b1783556103f4565b600083815260209020601f19861690835b828110156103cb57868501358255602094850194600190920191016103ab565b50868210156103e85760001960f88860031b161c19848701351681555b505060018560011b0183555b5050505050565b6001600160a01b03841681526040602082018190528101829052818360608301376000818301606090810191909152601f909201601f191601019291505056fea2646970667358221220328510e50ad5aa8ffa57f73cb37739e336a5af202ccbb31e6121e8f791b39db264736f6c63430008110033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 3,
+        "contract": "contracts/SimpleStorage.sol:SimpleStorage",
+        "label": "data",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 5,
+        "contract": "contracts/SimpleStorage.sol:SimpleStorage",
+        "label": "ipfsHash",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_string_storage"
+      }
+    ],
+    "types": {
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
