@@ -18,6 +18,9 @@ We have also created demo apps that integrate this wrapper in the following lang
 
 We'll now guide you through building & testing the wrapper & application. Please follow the steps below, and don't hesitate to reach out with questions @ https://discord.polywrap.io/.
 
+[Recorded Walkthrough - Feb. 15th 2023](https://youtube.com/live/52E6UMP8SRg?si=EnSIkaIECMiOmarE)
+`^may become out of date^`
+
 ### 1. Setup
 Prerequisite software:
 - `nvm`: Node Version Manager
